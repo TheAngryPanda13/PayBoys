@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button Click ="Button_Click_LoadJson" Content="Load Json" HorizontalAlignment="Right" Margin="0,20,20,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Left" Height="251" Margin="101,89,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="259"/>
-
+        <TextBox x:Name="Left" Height="251" Margin="521,120,20,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="259"/>
+        <DataGrid x:Name="dataTable" AutoGenerateColumns="True" Margin="0,0,539,0"/>
     </Grid>
 </Window>
