@@ -77,15 +77,24 @@ namespace PayBoys
             if (f.ShowDialog().GetValueOrDefault(true))
             {                
                 JsonClass check = JsonSerializer.Deserialize<JsonClass>(File.ReadAllText(f.FileName));
+
+                DialogWindow buyerWindow = new DialogWindow();
+
+                if (buyerWindow.ShowDialog() == true)
+                { 
+                    check.Buyer = buyerWindow.NameBuyer;
+                }
+
+                MessageBox.Show(check.Buyer);
                               
-                SqliteCommand command = new SqliteCommand();
+               /* SqliteCommand command = new SqliteCommand();
                                        
                 command.Connection = connectionPBData;
                 command.CommandText = $"CREATE TABLE IF NOT EXISTS \"{check.NameTable()}\" (_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, Product TEXT NOT NULL)";
                 command.ExecuteNonQuery();
 
                 command.CommandText = $"INSERT INTO Checks (ChecksName, Buyer) VALUES (\"{check.nameTable}\", \"unknown\")";
-                command.ExecuteNonQuery();
+                command.ExecuteNonQuery();*/
             }
         }
 

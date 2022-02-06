@@ -13,41 +13,67 @@ namespace PayBoys
         public DateTime localDateTime { get; set; }
         public JsonItems[] items { get; set; }
 
-        public string nameTable;
+        public string Buyer { get; set; }
+
         public string NameTable()
         {
-            if (this.user.Contains("Агроторг") || this.user.Contains("АГРОТОРГ"))
+            //список магазинов и их названий в чеках
+            var shops = new Dictionary<string, string>()
+            {
+                {"Агроторг", "Пятерочка"},
+                {"Прайс", "ФиксПрайс" },
+                {"Лента", "Лента" },
+                {"Перекресток", "Перекресток" },
+                {"Магнит", "Магнит" },
+                {"Дикси", "Дикси" }
+
+            };
+
+            foreach (var sh in shops)
+            {
+                if (this.user.Contains(sh.Key, StringComparison.OrdinalIgnoreCase))
+                {
+                    return $"{sh.Value}+{this.localDateTime.ToString("dd.MM-hh:mm")}";
+                }
+            }
+
+            //заглушака. прописать try...catch
+            return "Table Error";
+
+
+
+            /*if (this.user.Contains("Агроторг", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "Пятёрочка " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
-            if (this.user.Contains("Прайс") || this.user.Contains("ПРАЙС"))
+            if (this.user.Contains("Прайс", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "ФиксПрайс " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
-            if (this.user.Contains("Лента") || this.user.Contains("ЛЕНТА"))
+            if (this.user.Contains("Лента", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "Лента " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
-            if (this.user.Contains("Перекресток") || this.user.Contains("ПЕРЕКРЕСТОК"))
+            if (this.user.Contains("Перекресток", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "Перекресток " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
-            if (this.user.Contains("Магнит") || this.user.Contains("МАГНИТ"))
+            if (this.user.Contains("Магнит", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "Магнит " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
-            if (this.user.Contains("Дикси") || this.user.Contains("ДИКСИ"))
+            if (this.user.Contains("Дикси", StringComparison.OrdinalIgnoreCase))
             {
                 this.nameTable = "Дикси " + this.localDateTime.ToString("dd.MM-hh:mm");
                 return this.nameTable;
             }
             else
-                return "Error";
+                return "Error";*/
         }
     }
 }
